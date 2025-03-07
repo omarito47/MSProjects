@@ -15,11 +15,17 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class EtudiantServiceImpl extends IGenericServiceImpl<EtudiantDTO,Etudiant> implements  IEtudiantService{
+public class EtudiantServiceImpl extends IGenericServiceImpl<EtudiantDTO,Etudiant,Long> implements  IEtudiantService{
     private final FoyerClient foyerClient;
+    private final EtudiantRepository etudiantRepository;
 
     @Override
     public FoyerDTO getFoyerById(String id) {
         return foyerClient.findById(id);
+    }
+
+    @Override
+    public Etudiant UpdateEtudiant(Etudiant e) {
+        return etudiantRepository.save(e);
     }
 }

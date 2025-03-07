@@ -15,10 +15,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/etudiants")
 @RequiredArgsConstructor
-public class EtudiantController extends GenericController<EtudiantDTO> {
+public class EtudiantController extends GenericController<EtudiantDTO,Long> {
     private final IEtudiantService etudiantService;
     @GetMapping("/GetFoyerById/{id}")
     public FoyerDTO getFoyerById(@PathVariable String id) {
         return etudiantService.getFoyerById(id);
+    }
+    @PutMapping("/put1")
+    public Etudiant updatecandidat(@RequestBody Etudiant e) {
+        return etudiantService.UpdateEtudiant(e);
     }
 }

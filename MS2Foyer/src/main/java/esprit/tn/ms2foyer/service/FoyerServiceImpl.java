@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FoyerServiceImpl extends IGenericServiceImpl<FoyerDTO,Foyer> implements IFoyerService {
+public class FoyerServiceImpl extends IGenericServiceImpl<FoyerDTO,Foyer,String> implements IFoyerService {
 
 
 }

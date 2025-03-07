@@ -9,7 +9,7 @@ import tn.starter.mongoShared.dto.FoyerDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-04T23:38:21+0100",
+    date = "2025-03-07T17:44:53+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -64,5 +64,16 @@ public class FoyerMapperImpl implements FoyerMapper {
         }
 
         return list;
+    }
+
+    @Override
+    public void updateEntityFromDto(FoyerDTO dto, Foyer entity) {
+        if ( dto == null ) {
+            return;
+        }
+
+        entity.setName( dto.name() );
+        entity.setLocation( dto.location() );
+        entity.setCapacity( dto.capacity() );
     }
 }

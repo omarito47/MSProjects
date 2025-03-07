@@ -6,12 +6,10 @@ import tn.starter.shared.dto.EtudiantDTO;
 import tn.starter.shared.dto.FoyerDTO;
 import tn.starter.shared.service.IGenericService;
 
-import java.util.List;
-import java.util.Optional;
 
-
-public interface IEtudiantService extends IGenericService<EtudiantDTO> {
+public interface IEtudiantService extends IGenericService<EtudiantDTO, Long> {
     FoyerDTO getFoyerById(String id);
+    Etudiant UpdateEtudiant(Etudiant e);
 
 }
 

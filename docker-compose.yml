@@ -59,8 +59,10 @@ services:
     depends_on:
       - mysqldb
       - config-server
-    image: omarito47/ms1etudiant:0.0.1
-    container_name: ms1etudiant
+    image: omarito47/ms1etudiant:1.0
+    container_name: ms1etudiant1
+#    image: omarito47/ms1etudiant:0.0.1
+#    container_name: ms1etudiant
     restart: always
     ports:
       - "8082:8082"
@@ -79,8 +81,10 @@ services:
     depends_on:
       - mongodb
       - config-server
-    image: omarito47/ms2foyer:0.0.1
-    container_name: ms2foyer
+    image: omarito47/ms2foyer:1.0
+    container_name: ms2foyer1
+#    image: omarito47/ms2foyer:0.0.1
+#    container_name: ms2foyer
     restart: always
     ports:
       - "8081:8081"

@@ -10,6 +10,6 @@ import tn.starter.mongoShared.services.IGenericService;
 import java.util.List;
 import java.util.Optional;
 
-public interface IFoyerService extends IGenericService<FoyerDTO> {
+public interface IFoyerService extends IGenericService<FoyerDTO,String> {
 
 }

@@ -2,9 +2,10 @@ package tn.starter.mongoShared.mappers;
 
 import java.util.List;
 
-public interface GenericMapper<T,D> {
-	/* T:DTO D:Entity */
-	D toEntity(T source);
-	T toDto(D source);
-	List<T> toListDto(List<D> source);
+public interface GenericMapper<DTO,T> {
+	/* DTO:DTO T:Entity */
+	T toEntity(DTO source);
+	DTO toDto(T source);
+	List<DTO> toListDto(List<T> source);
+	void updateEntityFromDto(DTO dto, T entity);
 }

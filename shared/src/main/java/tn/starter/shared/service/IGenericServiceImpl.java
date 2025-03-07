@@ -1,5 +1,6 @@
 package tn.starter.shared.service;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,26 +9,47 @@ import tn.starter.shared.mapper.GenericMapper;
 import java.util.List;
 
 @Slf4j
-public class IGenericServiceImpl<T,D> implements IGenericService<T> {
-
+public class IGenericServiceImpl<DTO,T,ID> implements IGenericService<DTO,ID> {
 
     @Autowired
-    JpaRepository<D, Long> repository;
+    JpaRepository<T, ID> repository;
     @Autowired
-    GenericMapper<T, D> mapper;
+    GenericMapper<DTO, T> mapper;
 
     @Override
-    public T add(T dto) {
+    public DTO add(DTO dto) {
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     @Override
-    public T update(T dto) {
-        return mapper.toDto(repository.save(mapper.toEntity(dto)));
+    @Transactional
+    public DTO update(DTO dto) {
+        ID id = getIdFromDto(dto); // Extract the ID from DTO (method to be implemented)
+
+        T existingEntity = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Entity not found with ID: " + id));
+
+        mapper.updateEntityFromDto(dto, existingEntity); // Update fields on the existing entity
+
+        return mapper.toDto(repository.save(existingEntity));
+    }
+
+//    @Override
+//    public DTO retrieveById(long id) {
+//        return null;
+//    }
+
+    private ID getIdFromDto(DTO dto) {
+        try {
+            var method = dto.getClass().getMethod("id"); // Assuming "id" is the field name
+            return (ID) method.invoke(dto);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Unable to extract ID from DTO", e);
+        }
     }
 
     @Override
-    public T retrieveById(long id) {
+    public DTO retrieveById(ID id) {
         return mapper.toDto(repository.findById(id)
                 .orElseThrow(() ->
                         new IllegalArgumentException(new StringBuilder("No ")
@@ -37,12 +59,13 @@ public class IGenericServiceImpl<T,D> implements IGenericService<T> {
     }
 
     @Override
-    public List<T> retrieveAll() {
+    public List<DTO> retrieveAll() {
         return mapper.toListDto(repository.findAll()) ;
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(ID id) {
         repository.deleteById(id);
     }
+
 }

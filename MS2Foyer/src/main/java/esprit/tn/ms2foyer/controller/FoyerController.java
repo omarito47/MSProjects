@@ -18,6 +18,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/foyers")
 @RequiredArgsConstructor
-public class FoyerController extends GenericController<FoyerDTO> {
+public class FoyerController extends GenericController<FoyerDTO,String> {
 
 }

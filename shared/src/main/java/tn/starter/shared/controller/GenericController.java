@@ -7,29 +7,29 @@ import tn.starter.shared.service.IGenericService;
 
 import java.util.List;
 
-public class GenericController<T> {
 
+public class GenericController<DTO,ID> {
     @Autowired
-    IGenericService<T> genericService;
+    IGenericService<DTO,ID> genericService;
 
     @PostMapping("/add")
-    public T add(@RequestBody T dto) {
+    public DTO add(@RequestBody DTO dto) {
         return genericService.add(dto);
     }
     @PutMapping("/put")
-    public T update(@RequestBody T dto) {
+    public DTO update(@RequestBody DTO dto) {
         return genericService.update(dto);
     }
     @GetMapping("/getById/{id}")
-    public T retrieveById(@PathVariable("id") long id) {
+    public DTO retrieveById(@PathVariable("id") ID id) {
         return genericService.retrieveById(id);
     }
     @GetMapping("/getAll")
-    public List<T> retrieveAll() {
+    public List<DTO> retrieveAll() {
         return genericService.retrieveAll();
     }
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable("id") ID id) {
         genericService.delete(id);
     }
 }
