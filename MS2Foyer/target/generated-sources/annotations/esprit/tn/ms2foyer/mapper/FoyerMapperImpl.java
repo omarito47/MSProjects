@@ -9,7 +9,7 @@ import tn.starter.mongoShared.dto.FoyerDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-07T17:44:53+0100",
+    date = "2025-03-07T18:23:58+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component

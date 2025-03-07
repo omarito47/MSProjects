@@ -1,5 +1,6 @@
 tn\starter\mongoShared\mappers\GenericMapper.class
 tn\starter\mongoShared\dto\FoyerDTO.class
+tn\starter\mongoShared\config\SecurityConfig.class
 tn\starter\mongoShared\controllers\GenericController.class
 tn\starter\mongoShared\repositories\BaseRepository.class
 tn\starter\mongoShared\services\IGenericService.class
